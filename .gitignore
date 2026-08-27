@@ -1,0 +1,11 @@
+# 忽略所有的 .bat 批次檔
+*.bat
+
+# 如果你有特定的私密設定檔（例如 config.json 或 .env）也可以加進來
+# config.json
+# .env
+
+# 忽略系統暫存檔
+Thumbs.db
+desktop.ini
+.DS_Store
