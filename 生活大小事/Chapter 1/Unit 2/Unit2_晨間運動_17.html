@@ -1,0 +1,1412 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#2ea6dc" />
+<title>通勤英語複習模板</title>
+<style>
+  :root{
+    --blue:#2ea6dc;
+    --blue-dark:#1689c4;
+    --blue-soft:#d9eef8;
+    --blue-softer:#edf7fc;
+    --ink:#2e3a43;
+    --muted:#6e7c86;
+    --line:#d9e8ef;
+    --card:#ffffff;
+    --good:#16875f;
+    --good-bg:#eaf8f3;
+    --again:#c86c12;
+    --again-bg:#fff3e6;
+    --danger:#c94a4a;
+    --danger-bg:#fff0f0;
+    --shadow:0 10px 28px rgba(30,92,120,.12);
+  }
+  *{box-sizing:border-box}
+
+  html{
+    -webkit-text-size-adjust:100%;
+    text-size-adjust:100%;
+  }
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    color:var(--ink);
+    background:#f6fbfe;
+    line-height:1.55;
+  }
+  button,input{font:inherit}
+  button{cursor:pointer}
+  .app{
+    width:min(100%, 980px);
+    margin:0 auto;
+    min-height:100vh;
+    background:#fff;
+  }
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:22px 20px 28px;
+    background:linear-gradient(135deg,#36a8da,#2d98cf);
+    color:#fff;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    width:180px;height:180px;
+    border:3px solid rgba(255,255,255,.16);
+    border-radius:50%;
+    right:-55px;top:-58px;
+  }
+  .hero-top{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .eyebrow{
+    font-size:14px;font-weight:800;letter-spacing:.04em;opacity:.95;
+  }
+  .chapter-pill{
+    border:1px solid rgba(255,255,255,.5);
+    padding:5px 10px;border-radius:999px;font-size:12px;font-weight:800;
+    background:rgba(255,255,255,.12);
+  }
+  .hero h1{
+    margin:8px 0 0;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(40px,10vw,72px);
+    line-height:1;
+  }
+  .hero p{margin:12px 0 0;font-size:16px;font-weight:700}
+  .hero-icons{position:absolute;right:20px;bottom:16px;font-size:28px;opacity:.92}
+
+  .content{padding:22px 18px 132px}
+  .intro{
+    background:var(--blue-softer);
+    border-left:5px solid var(--blue);
+    border-radius:14px;
+    padding:14px 15px;
+    margin-bottom:16px;
+  }
+  .intro h2{margin:0 0 4px;color:var(--blue-dark);font-size:18px}
+  .intro p{margin:0;font-size:18px;color:#445963;line-height:1.72}
+
+  .studybar{
+    display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;
+    margin:18px 0 10px;
+  }
+  .studybar strong{font-size:18px}
+  .studybar small{display:block;color:#5f707a;font-size:16px;line-height:1.6}
+  .progress{height:8px;background:#eaf2f6;border-radius:999px;overflow:hidden;margin-top:7px}
+  .progress > span{
+    display:block;height:100%;width:0%;
+    background:linear-gradient(90deg,var(--blue),#5ac0ea);
+    transition:width .25s ease;
+  }
+  .counter{
+    min-width:64px;text-align:center;padding:9px 10px;border-radius:12px;
+    background:#e8f5fb;color:var(--blue-dark);font-weight:900;font-size:17px;
+  }
+  .section-title{
+    display:flex;align-items:center;gap:10px;
+    margin:18px 0 10px;color:var(--blue-dark);font-size:20px;font-weight:900;
+  }
+  .section-title::after{content:"";height:1px;background:#d8eaf2;flex:1}
+
+  .vocab-list{display:grid;grid-template-columns:1fr;gap:18px}
+  .word-card{
+    border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;
+    box-shadow:0 4px 14px rgba(23,95,129,.06);
+  }
+  .word-head{
+    display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start;
+    padding:18px 16px 15px;background:linear-gradient(90deg,#d6eef8,#eff8fc);
+  }
+  .word{
+    color:var(--blue-dark);
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:700;font-size:38px;letter-spacing:0;
+  }
+  .phonetic{color:#465760;font-size:17px;margin-top:3px}
+  .meaning{font-size:19px;font-weight:800;margin-top:8px}
+  .pos-badge{
+    display:inline-block;
+    margin-left:7px;
+    padding:2px 7px;
+    border-radius:999px;
+    background:#fff;
+    color:var(--blue-dark);
+    border:1px solid #bfe0ee;
+    font-size:.78em;
+    font-weight:900;
+    vertical-align:middle;
+  }
+  .audio-btn{
+    min-width:44px;min-height:44px;border:0;border-radius:50%;
+    background:#fff;color:var(--blue-dark);
+    box-shadow:0 3px 10px rgba(23,95,129,.12);
+  }
+  .word-body{padding:16px 16px 18px}
+  .tag{
+    display:inline-block;background:var(--blue);color:#fff;font-size:14px;font-weight:900;
+    border-radius:999px;padding:3px 9px;margin-bottom:8px;
+  }
+  .note{margin:0;color:#2f789d;font-size:18px;line-height:1.78}
+  .source-form{margin:10px 0 0;padding:9px 11px;border-radius:10px;background:#f1f8fb;color:#526872;font-size:16px;line-height:1.65}
+  .examples{display:grid;gap:12px;margin-top:14px}
+  .example-row{
+    display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;
+    padding:14px;border-radius:14px;background:#f8fbfd;
+    color:#435760;font-size:19px;
+  }
+  .example-row b{color:var(--blue-dark);font-size:19px}
+  .sentence-audio{
+    min-width:42px;min-height:42px;border:1px solid #d8eaf2;border-radius:12px;
+    background:#fff;color:var(--blue-dark);
+  }
+  .review-actions{display:flex;gap:10px;margin-top:16px}
+  .review-actions button{
+    flex:1;border:0;border-radius:12px;padding:14px 15px;font-weight:900;min-height:52px;font-size:18px;
+  }
+  .again{background:var(--again-bg);color:var(--again)}
+  .know{background:var(--good-bg);color:var(--good)}
+  .word-card.done{opacity:.62}
+  .word-card.done .word-head{filter:saturate(.65)}
+
+  .quiz-wrap{display:none}
+  .quiz-wrap.active{display:block}
+  .quiz-intro{
+    padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff;
+    margin-bottom:12px;
+  }
+  .quiz-intro h2{margin:0 0 6px;color:var(--blue-dark);font-size:26px}
+  .quiz-intro p{margin:0;color:#5a6a73;font-size:18px;line-height:1.75}
+  .quiz-tabs{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;
+  }
+  .quiz-tab{
+    border:1px solid #cfe4ee;background:#fff;color:#59707c;
+    border-radius:12px;padding:14px 12px;font-weight:900;font-size:19px;min-height:52px;
+  }
+  .quiz-tab.active{background:var(--blue);border-color:var(--blue);color:#fff}
+
+  .quiz-nav-panel{
+    margin:12px 0 14px;
+    padding:14px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:#f8fcfe;
+  }
+  .quiz-nav-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+    font-size:18px;
+    font-weight:900;
+    color:var(--blue-dark);
+  }
+  .quiz-nav-title small{
+    color:#667781;
+    font-size:14px;
+    font-weight:700;
+  }
+  .question-list{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+  }
+  .question-jump{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    min-width:0;
+    min-height:50px;
+    border:1px solid #cfe1e9;
+    border-radius:12px;
+    padding:9px 10px;
+    background:#fff;
+    color:#435760;
+    text-align:left;
+    font-size:16px;
+    font-weight:800;
+  }
+  .question-jump .qnum{
+    flex:0 0 auto;
+    display:grid;
+    place-items:center;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:#edf7fc;
+    color:var(--blue-dark);
+    font-weight:900;
+  }
+  .question-jump .qlabel{
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .question-jump.current{
+    border:2px solid var(--blue);
+    background:#eef9fd;
+  }
+  .question-jump.correct{
+    border-color:#8fd6bd;
+    background:var(--good-bg);
+    color:var(--good);
+  }
+  .question-jump.correct .qnum{
+    background:var(--good);
+    color:#fff;
+  }
+  .question-jump.wrong{
+    border-color:#f0aaaa;
+    background:var(--danger-bg);
+    color:#a13e3e;
+  }
+  .question-jump.wrong .qnum{
+    background:var(--danger);
+    color:#fff;
+  }
+  .question-jump.current.correct,
+  .question-jump.current.wrong{
+    outline:3px solid rgba(46,166,220,.18);
+    outline-offset:1px;
+  }
+
+  .result-banner{
+    display:none;
+    margin-top:12px;
+    padding:14px 16px;
+    border-radius:14px;
+    font-size:20px;
+    line-height:1.5;
+    font-weight:900;
+  }
+  .result-banner.show{display:block}
+  .result-banner.correct{
+    background:var(--good-bg);
+    border:1px solid #9edbc6;
+    color:var(--good);
+  }
+  .result-banner.wrong{
+    background:var(--danger-bg);
+    border:1px solid #efb4b4;
+    color:#a13e3e;
+  }
+
+  .quiz-card{
+    border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px;
+    box-shadow:0 4px 14px rgba(23,95,129,.06);
+  }
+  .quiz-meta{
+    display:flex;justify-content:space-between;gap:10px;align-items:center;
+    margin-bottom:12px;color:#5e6d75;font-size:17px;font-weight:800;
+  }
+  .quiz-type{
+    display:inline-block;padding:5px 10px;border-radius:999px;font-size:16px;
+    background:#e8f5fb;color:var(--blue-dark);
+  }
+  .quiz-question{font-weight:900;font-size:29px;margin:12px 0 8px;line-height:1.52}
+  .quiz-card.word-mode .quiz-question{
+    font-size:34px;
+    color:var(--ink);
+    letter-spacing:.02em;
+  }
+  .quiz-word-pos{
+    margin:4px 0 6px;
+    color:var(--blue-dark);
+    font-size:22px;
+    line-height:1.35;
+    font-weight:900;
+  }
+  .quiz-sub{font-size:18px;color:#5c6b73;margin:0 0 16px;line-height:1.72}
+  .quiz-audio{
+    width:100%;min-height:44px;border:1px solid #cfe4ee;background:#f8fcfe;
+    color:var(--blue-dark);border-radius:12px;font-weight:900;margin-bottom:12px;font-size:19px;min-height:54px;
+  }
+  .answer-input{
+    width:100%;min-height:46px;border:1.5px solid #cfe0e7;border-radius:12px;
+    padding:16px 16px;font-size:22px;outline:none;
+  }
+  .answer-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(46,166,220,.13)}
+  .answer-input.correct{border-color:var(--good);background:var(--good-bg)}
+  .answer-input.wrong{border-color:var(--danger);background:var(--danger-bg)}
+  .quiz-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .quiz-actions button{
+    min-height:52px;border-radius:12px;padding:12px 15px;font-weight:900;font-size:19px;
+  }
+  .hint-btn{border:1px solid #cfe0e7;background:#fff;color:#58717e}
+  .check-btn{border:0;background:var(--blue);color:#fff;flex:1}
+  .next-btn{border:0;background:#26343c;color:#fff;display:none}
+  .hint-box,.feedback-box{
+    display:none;margin-top:12px;padding:14px 14px;border-radius:12px;font-size:18px;line-height:1.72;
+  }
+  .hint-box.show{display:block;background:#fff8e8;color:#8a651d}
+  .feedback-box.show{display:block}
+  .feedback-box.good{background:var(--good-bg);color:var(--good)}
+  .feedback-box.bad{background:var(--danger-bg);color:#a13e3e}
+  .quiz-score{
+    margin-top:12px;padding:11px 12px;border-radius:12px;background:#f4f9fb;
+    color:#465a64;font-size:18px;font-weight:800;
+  }
+  .quiz-finish{
+    display:none;text-align:center;padding:22px 14px;border:1px solid var(--line);
+    border-radius:18px;background:linear-gradient(180deg,#f7fcfe,#fff);
+  }
+  .quiz-finish.show{display:block}
+  .quiz-finish h3{margin:0;color:var(--blue-dark);font-size:30px}
+  .quiz-finish p{color:var(--muted);font-size:18px;line-height:1.7}
+  .restart-btn{
+    border:0;background:var(--blue);color:#fff;border-radius:12px;padding:10px 16px;
+    min-height:50px;font-weight:900;font-size:18px;
+  }
+
+  .bottom-nav{
+    position:fixed;left:50%;bottom:0;transform:translateX(-50%);
+    width:min(100%,980px);display:grid;grid-template-columns:repeat(3,1fr);
+    background:rgba(255,255,255,.95);backdrop-filter:blur(14px);
+    border-top:1px solid #e3eef3;padding:9px 10px calc(9px + env(safe-area-inset-bottom));
+    z-index:20;
+  }
+  .bottom-nav button{
+    border:0;background:transparent;color:#63747e;padding:8px 3px;font-size:14px;font-weight:800;
+  }
+  .bottom-nav button.active{color:var(--blue-dark)}
+  .nav-ico{display:block;font-size:20px;line-height:1.1;margin-bottom:3px}
+  .toast{
+    position:fixed;left:50%;bottom:82px;transform:translate(-50%,20px);
+    background:#26343c;color:#fff;padding:9px 13px;border-radius:999px;
+    font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:30;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .hidden{display:none!important}
+
+  /* Mobile: keep everything comfortably stacked */
+  @media (max-width:599px){
+    .hero{padding:24px 18px 30px}
+    .hero-top{align-items:flex-start}
+    .hero h1{font-size:54px;margin-top:12px}
+    .hero p{font-size:18px;max-width:90%;line-height:1.65}
+    .hero-icons{right:16px;bottom:18px;font-size:24px}
+
+    .content{padding:22px 18px 136px}
+    .intro{padding:16px 15px;margin-bottom:20px}
+    .studybar{margin:22px 0 14px}
+    .section-title{margin:22px 0 13px}
+
+    .word-card{border-radius:20px}
+    .word-head{
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:12px;
+      padding:18px 16px 16px;
+    }
+    .word{font-size:40px;line-height:1.18;letter-spacing:0}
+    .phonetic{font-size:17px;margin-top:6px}
+    .meaning{font-size:19px;margin-top:9px}
+    .word-body{padding:17px 16px 19px}
+    .note{font-size:18px;line-height:1.8}
+
+    .examples{gap:13px;margin-top:15px}
+    .example-row{
+      grid-template-columns:1fr;
+      gap:10px;
+      padding:14px;
+      font-size:19px;
+      line-height:1.78;
+    }
+    .sentence-audio{
+      width:100%;
+      min-height:46px;
+      border-radius:12px;
+    }
+
+    .review-actions{
+      flex-direction:column;
+      gap:10px;
+      margin-top:16px;
+    }
+    .review-actions button{width:100%;min-height:50px}
+
+    .quiz-intro{padding:18px 16px;margin-bottom:16px}
+    .quiz-intro h2{font-size:26px}
+    .quiz-intro p{font-size:18px}
+    .quiz-tabs{gap:10px;margin:14px 0}
+    .quiz-tab{font-size:19px;min-height:54px}
+
+    .quiz-nav-panel{padding:14px 12px;margin:14px 0 16px}
+    .quiz-nav-title{font-size:20px;align-items:flex-start}
+    .quiz-nav-title small{font-size:14px}
+    .question-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .question-jump{min-height:54px;font-size:17px;padding:9px}
+    .question-jump .qnum{width:32px;height:32px;font-size:16px}
+    .result-banner{font-size:21px;padding:15px 16px}
+
+    .quiz-card{padding:20px 17px}
+    .quiz-meta{font-size:17px;margin-bottom:14px}
+    .quiz-type{font-size:17px;padding:6px 11px}
+    .quiz-question{font-size:30px;line-height:1.55}
+    .quiz-card.word-mode .quiz-question{font-size:36px;line-height:1.45}
+    .quiz-word-pos{font-size:24px;margin:6px 0 7px}
+    .quiz-sub{font-size:19px;line-height:1.75}
+    .quiz-audio{font-size:20px;min-height:56px}
+    .quiz-actions{display:grid;grid-template-columns:1fr;gap:11px}
+    .quiz-actions button{width:100%;min-height:56px;font-size:20px}
+    .check-btn{flex:none}
+    .answer-input{min-height:60px;font-size:22px;padding:16px}
+    .hint-box,.feedback-box{font-size:19px;line-height:1.75;padding:14px}
+    .quiz-score{font-size:19px;padding:14px}
+    .quiz-finish h3{font-size:32px}
+    .quiz-finish p{font-size:19px}
+    .restart-btn{font-size:19px;min-height:54px}
+
+    .bottom-nav{
+      padding:10px 8px calc(10px + env(safe-area-inset-bottom));
+    }
+    .bottom-nav button{min-height:56px;font-size:14px}
+  }
+
+  /* Tablet: still single-column for reading comfort */
+  @media (min-width:600px) and (max-width:1023px){
+    body{padding:18px}
+    .app{border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}
+    .content{padding:28px 30px 128px}
+    .vocab-list{grid-template-columns:1fr;gap:20px}
+    .word-head{padding:20px 20px 16px}
+    .word-body{padding:18px 20px 20px}
+    .example-row{padding:15px}
+  }
+
+  /* Desktop only: use two columns */
+  @media (min-width:1024px){
+    body{padding:24px}
+    .app{border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+    .content{padding:28px 34px 120px}
+    .vocab-list{grid-template-columns:1fr 1fr;gap:18px}
+  }
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="hero">
+    <div class="hero-top">
+      <div class="eyebrow" id="heroEyebrow">每日通勤英語複習</div>
+      <div class="chapter-pill">通勤手機版</div>
+    </div>
+    <h1 id="chapterTitle">Chapter</h1>
+    <p id="chapterSubtitle">單字＋兩個實用例句＋發音＋手動輸入課後測驗</p>
+    <div class="hero-icons" aria-hidden="true">🏃 🧘</div>
+  </header>
+
+  <section class="content">
+    <section id="studyView">
+      <div class="intro">
+        <h2 id="studyIntroTitle">每天 5–10 分鐘</h2>
+        <p>每個單字都有發音、中文意思與 2 個實用例句。讀完後進入課後測驗，自己手動輸入答案。</p>
+      </div>
+
+      <div class="studybar">
+        <div>
+          <strong>今日複習進度</strong>
+          <small id="studyCountLabel">今日單字</small>
+          <div class="progress"><span id="progressBar"></span></div>
+        </div>
+        <div class="counter"><span id="doneCount">0</span>/<span id="totalCount">0</span></div>
+      </div>
+
+      <div class="section-title" id="sectionTitle">今日學習單字</div>
+      <div class="vocab-list" id="vocabList"></div>
+    </section>
+
+    <section id="quizView" class="quiz-wrap">
+      <div class="quiz-intro">
+        <h2>課後測驗</h2>
+        <p>不是選擇題：你要自己打字。單字與句子測驗都有語音提示、文字提示、題目列表與跳題功能；答錯可以一直重試，也能一鍵清除輸入內容；答對後會先顯示綠色提示，再自動進入下一題。</p>
+      </div>
+
+      <div class="quiz-tabs">
+        <button type="button" class="quiz-tab active" data-mode="word">單字測驗</button>
+        <button type="button" class="quiz-tab" data-mode="sentence">句子測驗</button>
+      </div>
+
+      <div class="quiz-nav-panel">
+        <div class="quiz-nav-title">
+          <span>題目列表</span>
+          <small>可直接點題號跳題</small>
+        </div>
+        <div id="questionList" class="question-list" aria-label="測驗題目列表"></div>
+      </div>
+
+      <div id="quizCard" class="quiz-card">
+        <div class="quiz-meta">
+          <span class="quiz-type" id="quizType">單字拼寫</span>
+          <span id="quizPos">1 / 7</span>
+        </div>
+        <div class="quiz-question" id="quizQuestion"></div>
+        <div class="quiz-word-pos hidden" id="quizWordPos"></div>
+        <p class="quiz-sub" id="quizSub"></p>
+        <button type="button" id="quizAudioBtn" class="quiz-audio hidden">🔊 聽題目句子</button>
+        <input id="answerInput" class="answer-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="請手動輸入答案" />
+        <div id="resultBanner" class="result-banner" aria-live="assertive"></div>
+        <div class="quiz-actions">
+          <button type="button" id="hintBtn" class="hint-btn">💡 提示</button>
+          <button type="button" id="clearBtn" class="hint-btn">⌫ 清除內容</button>
+          <button type="button" id="checkBtn" class="check-btn">檢查答案</button>
+          <button type="button" id="nextBtn" class="next-btn">下一題</button>
+        </div>
+        <div id="hintBox" class="hint-box" aria-live="polite"></div>
+        <div id="feedbackBox" class="feedback-box" aria-live="polite"></div>
+        <div class="quiz-score">本輪得分：<span id="scoreNow">0</span> / <span id="answeredNow">0</span></div>
+      </div>
+
+      <div id="quizFinish" class="quiz-finish">
+        <h3 id="finishTitle">完成！</h3>
+        <p id="finishText"></p>
+        <button type="button" id="restartQuizBtn" class="restart-btn">再測一次</button>
+      </div>
+    </section>
+  </section>
+
+  <nav class="bottom-nav" aria-label="底部導覽">
+    <button type="button" class="nav-btn active" data-view="study"><span class="nav-ico">📘</span>今日複習</button>
+    <button type="button" class="nav-btn" data-view="quiz"><span class="nav-ico">✍️</span>課後測驗</button>
+    <button type="button" id="resetBtn"><span class="nav-ico">↻</span>重置進度</button>
+  </nav>
+</main>
+
+<div class="toast" id="toast">已更新</div>
+
+<script>
+/* TEMPLATE NOTE: Edit CONFIG and DATA below to create a new chapter. */
+(() => {
+  /*
+    ==========================================================
+    通勤英語複習模板：本章依課本 Unit 2「晨間運動」製作
+    1. CONFIG：章節名稱與畫面文字
+    2. DATA：課本說法、音標、中文、說明、兩個例句
+    ==========================================================
+  */
+
+  const CONFIG = {
+    storageKey: "commute-english-unit-02-morning-exercise-v1",
+    eyebrow: "晨間運動 Morning Exercise",
+    chapterTitle: "Unit 2",
+    chapterSubtitle: "單字＋兩個實用例句＋發音＋手動輸入課後測驗",
+    introTitle: "每天 5–10 分鐘",
+    introText: "本頁依課本「晨間運動」整理為 16 個完整學習項目；每項都有發音、中文意思與 2 個實用例句，並可分次完成單字與句子測驗。",
+    sectionTitle: "晨間運動常用說法",
+    studyCountText: "今日單字"
+  };
+
+  const DATA = [
+    {
+      word:"go jogging",
+      display:"go jogging",
+      pos:"phr.",
+      phonetic:"/ɡoʊ ˈdʒɑɡɪŋ/",
+      meaning:"去慢跑",
+      note:"用來表示去慢跑、慢速跑步運動。",
+      tag:false,
+      examples:[
+        {en:"I go jogging before breakfast on sunny days.", zh:"天氣晴朗時，我會在早餐前去慢跑。"},
+        {en:"We went jogging around the park this morning.", zh:"我們今天早上繞著公園慢跑。"}
+      ]
+    },
+    {
+      word:"do a workout",
+      display:"do a workout",
+      pos:"phr.",
+      phonetic:"/du ə ˈwɝˌkaʊt/",
+      meaning:"做一套運動；健身",
+      note:"workout 在這裡是名詞，常指一次完整的運動或健身內容。",
+      sourceForm:"do a workout; work out",
+      tag:false,
+      examples:[
+        {en:"I do a short workout before I take a shower.", zh:"我洗澡前會做一套簡短的運動。"},
+        {en:"She did a twenty-minute workout at home.", zh:"她在家做了二十分鐘的健身運動。"}
+      ]
+    },
+    {
+      word:"work out",
+      display:"work out",
+      pos:"phr.",
+      phonetic:"/wɝk aʊt/",
+      meaning:"做運動；健身",
+      note:"work out 是動詞片語，表示做運動或健身。",
+      sourceForm:"do a workout; work out",
+      tag:false,
+      examples:[
+        {en:"I work out after work three times a week.", zh:"我每週下班後會健身三次。"},
+        {en:"Do you want to work out with me tonight?", zh:"你今晚想和我一起運動嗎？"}
+      ]
+    },
+    {
+      word:"take one's pet for a walk",
+      display:"take one's pet for a walk",
+      pos:"phr.",
+      phonetic:"/teɪk wʌnz pɛt fər ə wɔk/",
+      meaning:"帶寵物去散步",
+      note:"實際使用時，one's 會依主詞換成 my、your、his、her 等所有格。",
+      tag:false,
+      examples:[
+        {en:"Jake takes his dog for a walk every morning.", zh:"傑克每天早上都去遛狗。"},
+        {en:"I take my dog for a walk after dinner.", zh:"我晚餐後會帶狗去散步。"}
+      ]
+    },
+    {
+      word:"walk the trails",
+      display:"walk the trails",
+      pos:"phr.",
+      phonetic:"/wɔk ðə treɪlz/",
+      meaning:"走在步道上",
+      note:"trail 指步道、小徑；walk the trails 表示沿著步道走。",
+      tag:false,
+      examples:[
+        {en:"We like to walk the trails early in the morning.", zh:"我們喜歡一大早走步道。"},
+        {en:"They walked the trails near the lake yesterday.", zh:"他們昨天走了湖邊的步道。"}
+      ]
+    },
+    {
+      word:"take a walk in the park",
+      display:"take a walk in the park",
+      pos:"phr.",
+      phonetic:"/teɪk ə wɔk ɪn ðə pɑrk/",
+      meaning:"在公園散步",
+      note:"take a walk 是「去散步」，加上 in the park 表示在公園裡散步。",
+      tag:false,
+      examples:[
+        {en:"Let's take a walk in the park after lunch.", zh:"我們午餐後去公園散步吧。"},
+        {en:"My parents take a walk in the park every evening.", zh:"我父母每天傍晚都會在公園散步。"}
+      ]
+    },
+    {
+      word:"go to the gym",
+      display:"go to the gym",
+      pos:"phr.",
+      phonetic:"/ɡoʊ tə ðə dʒɪm/",
+      meaning:"去健身房",
+      note:"gym 是健身房；這是日常最常見的說法之一。",
+      sourceForm:"go to the gym / fitness center; hit the gym",
+      tag:false,
+      examples:[
+        {en:"Do you want to go to the gym and work out after work?", zh:"下班後你想去健身房運動嗎？"},
+        {en:"I go to the gym before dinner on Tuesdays.", zh:"我星期二晚餐前會去健身房。"}
+      ]
+    },
+    {
+      word:"go to the fitness center",
+      display:"go to the fitness center",
+      pos:"phr.",
+      phonetic:"/ɡoʊ tə ðə ˈfɪtnəs ˌsɛntər/",
+      meaning:"去健身中心",
+      note:"fitness center 與 gym 在這一課中是可替換的完整說法。",
+      sourceForm:"go to the gym / fitness center; hit the gym",
+      tag:false,
+      examples:[
+        {en:"She goes to the fitness center before work.", zh:"她上班前會去健身中心。"},
+        {en:"The fitness center is busy in the evening.", zh:"那間健身中心晚上很忙。"}
+      ]
+    },
+    {
+      word:"hit the gym",
+      display:"hit the gym",
+      pos:"phr.",
+      phonetic:"/hɪt ðə dʒɪm/",
+      meaning:"去健身房運動",
+      note:"hit the gym 是「去健身房運動」的口語說法。",
+      sourceForm:"go to the gym / fitness center; hit the gym",
+      tag:false,
+      examples:[
+        {en:"I'm going to hit the gym after class.", zh:"我下課後要去健身房運動。"},
+        {en:"He hits the gym before work on weekdays.", zh:"他平日上班前會去健身房運動。"}
+      ]
+    },
+    {
+      word:"go swimming",
+      display:"go swimming",
+      pos:"phr.",
+      phonetic:"/ɡoʊ ˈswɪmɪŋ/",
+      meaning:"去游泳",
+      note:"go + V-ing 常用來表示去從事某種休閒或運動活動。",
+      tag:false,
+      examples:[
+        {en:"We go swimming at the community pool on Saturdays.", zh:"我們星期六會去社區游泳池游泳。"},
+        {en:"She wants to go swimming after work.", zh:"她下班後想去游泳。"}
+      ]
+    },
+    {
+      word:"go hiking",
+      display:"go hiking",
+      pos:"phr.",
+      phonetic:"/ɡoʊ ˈhaɪkɪŋ/",
+      meaning:"去登山；健行",
+      note:"課本的 (mountain) 表示 mountain 可以省略；本頁例句使用較自然簡潔的 go hiking。",
+      sourceForm:"go (mountain) hiking",
+      answers:["go hiking","go mountain hiking"],
+      tag:false,
+      examples:[
+        {en:"I go hiking on the weekends.", zh:"我週末時都會去登山。"},
+        {en:"We're going hiking in the mountains tomorrow.", zh:"我們明天要去山裡健行。"}
+      ]
+    },
+    {
+      word:"stretch",
+      display:"stretch",
+      pos:"v.",
+      phonetic:"/strɛtʃ/",
+      meaning:"進行伸展（運動）",
+      note:"課本註記：stretch 可以當名詞，也可以當動詞。",
+      tag:false,
+      examples:[
+        {en:"I start the day with a stretch and yoga.", zh:"我以伸展運動和瑜伽展開我的一天。"},
+        {en:"Remember to stretch before you exercise.", zh:"運動前記得先伸展。"}
+      ]
+    },
+    {
+      word:"do yoga",
+      display:"do yoga",
+      pos:"phr.",
+      phonetic:"/du ˈjoʊɡə/",
+      meaning:"做瑜伽",
+      note:"do yoga 表示做瑜伽練習。",
+      tag:false,
+      examples:[
+        {en:"I do yoga for ten minutes every morning.", zh:"我每天早上做十分鐘瑜伽。"},
+        {en:"She likes to do yoga before breakfast.", zh:"她喜歡在早餐前做瑜伽。"}
+      ]
+    },
+    {
+      word:"skip rope",
+      display:"skip rope",
+      pos:"phr.",
+      phonetic:"/skɪp roʊp/",
+      meaning:"跳繩（skip rope）",
+      quizPrompt:"跳繩",
+      note:"課本用 skip / jump rope 表示兩個完整替代說法，因此本頁分成兩張卡學習。",
+      sourceForm:"skip / jump rope",
+      tag:false,
+      examples:[
+        {en:"The kids skip rope during recess.", zh:"孩子們下課時間會跳繩。"},
+        {en:"I used to skip rope in the school yard.", zh:"我以前常在校園裡跳繩。"}
+      ]
+    },
+    {
+      word:"jump rope",
+      display:"jump rope",
+      pos:"phr.",
+      phonetic:"/dʒʌmp roʊp/",
+      meaning:"跳繩（jump rope）",
+      quizPrompt:"跳繩",
+      note:"這是課本 skip / jump rope 拆出的另一個完整說法。",
+      sourceForm:"skip / jump rope",
+      tag:false,
+      examples:[
+        {en:"My brother used to jump rope every evening to exercise.", zh:"我弟弟曾經每天晚上做跳繩運動。"},
+        {en:"Can you jump rope for five minutes without stopping?", zh:"你可以不停地跳繩五分鐘嗎？"}
+      ]
+    },
+    {
+      word:"ride a bicycle",
+      display:"ride a bicycle",
+      pos:"phr.",
+      phonetic:"/raɪd ə ˈbaɪsɪkəl/",
+      meaning:"騎腳踏車",
+      note:"ride a bicycle 表示騎自行車、腳踏車。",
+      tag:false,
+      examples:[
+        {en:"I ride a bicycle to the station on nice days.", zh:"天氣好時，我會騎腳踏車去車站。"},
+        {en:"We rode our bicycles along the river this morning.", zh:"我們今天早上沿著河邊騎腳踏車。"}
+      ]
+    }
+  ];
+
+  const STORAGE_KEYS = {
+    study: `${CONFIG.storageKey}-study`,
+    quiz: `${CONFIG.storageKey}-quiz`
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const list = $("vocabList");
+  const progressBar = $("progressBar");
+  const doneCount = $("doneCount");
+  const toast = $("toast");
+
+  function applyConfig(){
+    $("heroEyebrow").textContent = CONFIG.eyebrow;
+    $("chapterTitle").textContent = CONFIG.chapterTitle;
+    $("chapterSubtitle").textContent = CONFIG.chapterSubtitle;
+    $("studyIntroTitle").textContent = CONFIG.introTitle;
+    document.querySelector("#studyView .intro p").textContent = CONFIG.introText;
+    $("sectionTitle").textContent = CONFIG.sectionTitle;
+    $("studyCountLabel").textContent = `${DATA.length} 個｜${CONFIG.studyCountText}`;
+    $("totalCount").textContent = DATA.length;
+    document.title = `通勤英語複習｜${CONFIG.chapterTitle}｜晨間運動`;
+  }
+
+  function escapeHtml(s){
+    return String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+  }
+
+  function speak(text, rate=.88){
+    if(!("speechSynthesis" in window)){
+      showToast("此瀏覽器不支援語音播放");
+      return;
+    }
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-US";
+    u.rate = rate;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+  }
+
+  function showToast(text){
+    toast.textContent = text;
+    toast.classList.add("show");
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(()=>toast.classList.remove("show"), 1200);
+  }
+
+  function makeCards(){
+    list.innerHTML = DATA.map((item, i) => `
+      <article class="word-card" data-word="${escapeHtml(item.word)}">
+        <div class="word-head">
+          <div>
+            <div class="word">${escapeHtml(item.display)}</div>
+            <div class="phonetic">${escapeHtml(item.phonetic)}</div>
+            <div class="meaning">${escapeHtml(item.meaning)} <span class="pos-badge">${escapeHtml(item.pos || "")}</span></div>
+          </div>
+          <button type="button" class="audio-btn word-audio" data-index="${i}" aria-label="播放 ${escapeHtml(item.word)} 發音">🔊</button>
+        </div>
+        <div class="word-body">
+          ${item.tag ? '<span class="tag">老外都這樣用</span>' : ''}
+          <p class="note">${escapeHtml(item.note)}</p>
+          ${item.sourceForm ? `<p class="source-form"><strong>課本原文：</strong> ${escapeHtml(item.sourceForm)}</p>` : ''}
+          <div class="examples">
+            ${item.examples.map((ex, j) => `
+              <div class="example-row">
+                <div>
+                  <b>例句 ${j+1}</b>：${escapeHtml(ex.en)}
+                  <div>${escapeHtml(ex.zh)}</div>
+                </div>
+                <button type="button" class="sentence-audio" data-index="${i}" data-example="${j}" aria-label="播放例句 ${j+1}">🔊</button>
+              </div>
+            `).join("")}
+          </div>
+          <div class="review-actions">
+            <button type="button" class="again">再複習</button>
+            <button type="button" class="know">會了</button>
+          </div>
+        </div>
+      </article>
+    `).join("");
+
+    list.querySelectorAll(".word-audio").forEach(btn=>{
+      btn.addEventListener("click",()=>speak(DATA[+btn.dataset.index].word,.82));
+    });
+    list.querySelectorAll(".sentence-audio").forEach(btn=>{
+      const i=+btn.dataset.index, j=+btn.dataset.example;
+      btn.addEventListener("click",()=>speak(DATA[i].examples[j].en,.86));
+    });
+    list.querySelectorAll(".know").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        btn.closest(".word-card").classList.add("done");
+        updateProgress();
+        showToast("記住了 ✓");
+      });
+    });
+    list.querySelectorAll(".again").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        btn.closest(".word-card").classList.remove("done");
+        updateProgress();
+        showToast("保留到下次複習");
+      });
+    });
+    restoreProgress();
+  }
+
+  function updateProgress(persist=true){
+    const cards = [...list.querySelectorAll(".word-card")];
+    const done = cards.filter(c=>c.classList.contains("done")).length;
+    doneCount.textContent = done;
+    progressBar.style.width = cards.length ? `${done/cards.length*100}%` : "0%";
+    if(!persist) return;
+    try{
+      localStorage.setItem(STORAGE_KEYS.study,
+        JSON.stringify(cards.map(c=>({w:c.dataset.word,done:c.classList.contains("done")})))
+      );
+    }catch(e){}
+  }
+
+  function restoreProgress(){
+    try{
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.study)||"[]");
+      if(Array.isArray(saved)){
+        saved.forEach(item=>{
+          const c=[...list.querySelectorAll(".word-card")].find(x=>x.dataset.word===item.w);
+          if(c && item.done)c.classList.add("done");
+        });
+      }
+    }catch(e){}
+    updateProgress(false);
+  }
+
+  function normalize(s){
+    return (s||"")
+      .trim()
+      .toLowerCase()
+      .replace(/[’‘]/g,"'")
+      .replace(/[“”]/g,'"')
+      .replace(/[.,!?;:]/g,"")
+      .replace(/\s+/g," ");
+  }
+
+  function maskedHint(text, level){
+    const words = text.split(" ");
+    if(level===1){
+      return `共 ${words.length} 個字；開頭字母：` + words.map(w => (w[0]||"") + "…").join(" ");
+    }
+    if(level===2){
+      return words.map(w=>{
+        const clean=w.replace(/[.,!?;:]/g,"");
+        if(clean.length<=2) return clean;
+        return clean.slice(0,2) + "·".repeat(Math.min(5, clean.length-2));
+      }).join(" ");
+    }
+    return `答案中的關鍵字：${words.filter(w=>w.replace(/[.,!?;:]/g,"").length>=4).slice(0,3).join(" / ")}`;
+  }
+
+  const WORD_QUIZ = DATA.map(d=>{
+    const primary=d.quizAnswer || d.word;
+    return {
+      prompt:d.quizPrompt || d.meaning,
+      pos:d.pos || "N/A",
+      sub:"請輸入對應的英文單字或片語。",
+      answer:primary,
+      answers:Array.isArray(d.answers) && d.answers.length ? d.answers : [primary],
+      audio:d.word
+    };
+  });
+
+  const SENTENCE_QUIZ = DATA.flatMap(d =>
+    d.examples.map(ex => ({
+      prompt:ex.zh,
+      pos:null,
+      sub:"請把上面的中文完整輸入成你剛剛學過的英文例句。",
+      answer:ex.en,
+      answers:[ex.en],
+      audio:ex.en,
+      word:d.word
+    }))
+  );
+
+  let mode="word";
+  let qIndex=0;
+  const qIndexes={word:0,sentence:0};
+
+  const quizStates = {
+    word: WORD_QUIZ.map(()=>({typed:"", status:"unanswered", hintLevel:0})),
+    sentence: SENTENCE_QUIZ.map(()=>({typed:"", status:"unanswered", hintLevel:0}))
+  };
+
+  function cleanSavedState(raw, fallback){
+    if(!raw || typeof raw!=="object") return {...fallback};
+    const status=["unanswered","wrong","correct"].includes(raw.status) ? raw.status : "unanswered";
+    const typed=typeof raw.typed==="string" ? raw.typed : "";
+    const hintNum=Number.isFinite(+raw.hintLevel) ? Math.max(0,Math.min(3,Math.trunc(+raw.hintLevel))) : 0;
+    return {typed,status,hintLevel:hintNum};
+  }
+
+  function safeIndex(value,length){
+    const n=Number.isFinite(+value) ? Math.trunc(+value) : 0;
+    if(!length) return 0;
+    return Math.max(0,Math.min(length-1,n));
+  }
+
+  function restoreQuizProgress(){
+    try{
+      const saved=JSON.parse(localStorage.getItem(STORAGE_KEYS.quiz)||"null");
+      if(!saved || typeof saved!=="object" || saved.version!==1) return;
+
+      if(saved.states && Array.isArray(saved.states.word)){
+        quizStates.word = WORD_QUIZ.map((_,i)=>cleanSavedState(saved.states.word[i],{typed:"",status:"unanswered",hintLevel:0}));
+      }
+      if(saved.states && Array.isArray(saved.states.sentence)){
+        quizStates.sentence = SENTENCE_QUIZ.map((_,i)=>cleanSavedState(saved.states.sentence[i],{typed:"",status:"unanswered",hintLevel:0}));
+      }
+
+      qIndexes.word=safeIndex(saved.indexes?.word,WORD_QUIZ.length);
+      qIndexes.sentence=safeIndex(saved.indexes?.sentence,SENTENCE_QUIZ.length);
+      mode=(saved.mode==="sentence" || saved.mode==="word") ? saved.mode : "word";
+      qIndex=qIndexes[mode];
+    }catch(e){}
+  }
+
+  function saveQuizProgress(){
+    qIndexes[mode]=safeIndex(qIndex,quizSet().length);
+    try{
+      localStorage.setItem(STORAGE_KEYS.quiz,JSON.stringify({
+        version:1,
+        mode,
+        indexes:{word:qIndexes.word,sentence:qIndexes.sentence},
+        states:{word:quizStates.word,sentence:quizStates.sentence}
+      }));
+    }catch(e){}
+  }
+
+  const quizType=$("quizType"), quizPos=$("quizPos"), quizQuestion=$("quizQuestion"),
+        quizSub=$("quizSub"), quizWordPos=$("quizWordPos"), quizAudioBtn=$("quizAudioBtn"), answerInput=$("answerInput"),
+        hintBtn=$("hintBtn"), checkBtn=$("checkBtn"), nextBtn=$("nextBtn"),
+        hintBox=$("hintBox"), feedbackBox=$("feedbackBox"), scoreNow=$("scoreNow"),
+        answeredNow=$("answeredNow"), quizCard=$("quizCard"), quizFinish=$("quizFinish"),
+        finishTitle=$("finishTitle"), finishText=$("finishText"),
+        questionList=$("questionList"), resultBanner=$("resultBanner");
+
+  function quizSet(){ return mode==="word" ? WORD_QUIZ : SENTENCE_QUIZ; }
+  function stateSet(){ return quizStates[mode]; }
+
+  function questionLabel(i){
+    if(mode==="word") return WORD_QUIZ[i]?.prompt || DATA[i]?.meaning || "";
+    const text=quizSet()[i]?.prompt || "";
+    return text.length>12 ? text.slice(0,12)+"…" : text;
+  }
+
+  function renderQuestionList(){
+    const states=stateSet();
+    questionList.innerHTML=states.map((s,i)=>{
+      const statusClass=s.status==="correct" ? "correct" : s.status==="wrong" ? "wrong" : "";
+      const current=i===qIndex ? "current" : "";
+      const symbol=s.status==="correct" ? "✓" : s.status==="wrong" ? "×" : String(i+1);
+      const aria=s.status==="correct" ? "已答對" : s.status==="wrong" ? "已答錯" : "未作答";
+      return `<button type="button" class="question-jump ${statusClass} ${current}" data-q="${i}" aria-label="第 ${i+1} 題，${aria}">
+        <span class="qnum">${symbol}</span>
+        <span class="qlabel">${escapeHtml(questionLabel(i))}</span>
+      </button>`;
+    }).join("");
+
+    questionList.querySelectorAll(".question-jump").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        window.clearTimeout(window.__autoNextQuizTimer);
+        saveCurrentTyped();
+        qIndex=+btn.dataset.q;
+        qIndexes[mode]=qIndex;
+        saveQuizProgress();
+        renderQuestion();
+        quizCard.scrollIntoView({behavior:"smooth",block:"start"});
+      });
+    });
+  }
+
+  function saveCurrentTyped(){
+    const states=stateSet();
+    if(states[qIndex] && states[qIndex].status!=="correct"){
+      states[qIndex].typed=answerInput.value;
+    }
+    qIndexes[mode]=safeIndex(qIndex,quizSet().length);
+    saveQuizProgress();
+  }
+
+  function updateScore(){
+    const states=stateSet();
+    const score=states.filter(s=>s.status==="correct").length;
+    const answered=states.filter(s=>s.status!=="unanswered").length;
+    scoreNow.textContent=score;
+    answeredNow.textContent=answered;
+  }
+
+  function showStoredResult(state,q){
+    resultBanner.className="result-banner";
+    resultBanner.textContent="";
+    feedbackBox.className="feedback-box";
+    feedbackBox.textContent="";
+
+    if(state.status==="correct"){
+      answerInput.classList.add("correct");
+      resultBanner.textContent="✓ 答對了！這題已完成。";
+      resultBanner.className="result-banner show correct";
+      feedbackBox.textContent="做得很好，可以直接跳下一題或從題目列表選其他題。";
+      feedbackBox.className="feedback-box show good";
+    }else if(state.status==="wrong"){
+      answerInput.classList.add("wrong");
+      resultBanner.textContent="✗ 還沒答對，可以修改後再試一次。";
+      resultBanner.className="result-banner show wrong";
+      feedbackBox.textContent="答案先不公布，你可以重複作答；也可以使用語音或文字提示。";
+      feedbackBox.className="feedback-box show bad";
+    }
+  }
+
+  function renderQuestion(){
+    const qs=quizSet();
+    const states=stateSet();
+    qIndex=safeIndex(qIndex,qs.length);
+    qIndexes[mode]=qIndex;
+    const q=qs[qIndex];
+    const state=states[qIndex];
+    if(!q || !state) return;
+    const locked=state.status==="correct";
+
+    answerInput.value=state.typed || "";
+    answerInput.className="answer-input";
+    hintBox.className="hint-box";
+    hintBox.textContent="";
+    feedbackBox.className="feedback-box";
+    feedbackBox.textContent="";
+    resultBanner.className="result-banner";
+    resultBanner.textContent="";
+    quizFinish.classList.remove("show");
+    quizCard.classList.remove("hidden");
+
+    quizType.textContent=mode==="word" ? "單字拼寫" : "句子輸入";
+    quizCard.classList.toggle("word-mode", mode==="word");
+    quizPos.textContent=`${qIndex+1} / ${qs.length}`;
+    quizQuestion.textContent=q.prompt;
+    if(mode==="word" && q.pos){
+      quizWordPos.textContent=q.pos;
+      quizWordPos.classList.remove("hidden");
+    }else{
+      quizWordPos.textContent="";
+      quizWordPos.classList.add("hidden");
+    }
+    quizSub.textContent=q.sub;
+
+    if(q.audio){
+      quizAudioBtn.classList.remove("hidden");
+      quizAudioBtn.textContent = mode==="word" ? "🔊 聽單字提示" : "🔊 聽題目句子";
+      quizAudioBtn.onclick=()=>speak(q.audio,.82);
+    }else{
+      quizAudioBtn.classList.add("hidden");
+      quizAudioBtn.onclick=null;
+    }
+
+    if(state.hintLevel>0){
+      hintBox.textContent=maskedHint(q.answer,state.hintLevel);
+      hintBox.className="hint-box show";
+    }
+
+    if(locked){
+      checkBtn.style.display="none";
+      nextBtn.style.display="";
+      answerInput.disabled=true;
+      showStoredResult(state,q);
+    }else{
+      checkBtn.style.display="";
+      nextBtn.style.display=state.status==="wrong" ? "" : "none";
+      answerInput.disabled=false;
+      if(state.status==="wrong") showStoredResult(state,q);
+    }
+
+    updateScore();
+    renderQuestionList();
+    saveQuizProgress();
+    if(!locked) setTimeout(()=>answerInput.focus(),30);
+  }
+
+  function switchMode(newMode){
+    if(newMode!=="word" && newMode!=="sentence") return;
+    window.clearTimeout(window.__autoNextQuizTimer);
+    saveCurrentTyped();
+    qIndexes[mode]=qIndex;
+    mode=newMode;
+    qIndex=safeIndex(qIndexes[mode],quizSet().length);
+    document.querySelectorAll(".quiz-tab").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));
+    saveQuizProgress();
+    renderQuestion();
+  }
+
+  function checkAnswer(){
+    const states=stateSet();
+    const state=states[qIndex];
+    if(state.status==="correct") return;
+
+    const q=quizSet()[qIndex];
+    state.typed=answerInput.value;
+    const typed=normalize(state.typed);
+
+    if(!typed){
+      feedbackBox.textContent="先輸入答案再檢查。";
+      feedbackBox.className="feedback-box show bad";
+      saveQuizProgress();
+      return;
+    }
+
+    const candidates=Array.isArray(q.answers) && q.answers.length ? q.answers : [q.answer];
+    const ok=candidates.some(a=>typed===normalize(a));
+    state.status=ok ? "correct" : "wrong";
+    answerInput.disabled=true;
+
+    if(ok){
+      answerInput.classList.add("correct");
+      resultBanner.textContent="✓ 答對了！即將自動進入下一題…";
+      resultBanner.className="result-banner show correct";
+      feedbackBox.textContent="答案完全正確。";
+      feedbackBox.className="feedback-box show good";
+      showToast("✓ 答對了！");
+    }else{
+      answerInput.classList.add("wrong");
+      resultBanner.textContent="✗ 還沒答對，可以修改後再試一次。";
+      resultBanner.className="result-banner show wrong";
+      feedbackBox.textContent="答案先不公布。你可以重新輸入，再按「檢查答案」；也可以使用提示。";
+      feedbackBox.className="feedback-box show bad";
+      answerInput.disabled=false;
+      checkBtn.style.display="";
+      nextBtn.style.display="";
+      setTimeout(()=>answerInput.focus(),30);
+    }
+
+    updateScore();
+    renderQuestionList();
+    saveQuizProgress();
+
+    if(ok){
+      checkBtn.style.display="none";
+      nextBtn.style.display="none";
+      window.clearTimeout(window.__autoNextQuizTimer);
+      window.__autoNextQuizTimer = window.setTimeout(()=>{
+        nextQuestion();
+      }, 1000);
+    }
+  }
+
+  function nextQuestion(){
+    saveCurrentTyped();
+    const qs=quizSet();
+    const states=stateSet();
+
+    let next=-1;
+    for(let step=1;step<=qs.length;step++){
+      const idx=(qIndex+step)%qs.length;
+      if(states[idx].status!=="correct"){
+        next=idx;
+        break;
+      }
+    }
+
+    if(next>=0){
+      qIndex=next;
+      qIndexes[mode]=qIndex;
+      saveQuizProgress();
+      renderQuestion();
+      return;
+    }
+
+    const score=states.filter(s=>s.status==="correct").length;
+    quizCard.classList.add("hidden");
+    quizFinish.classList.add("show");
+    const pct=Math.round(score/qs.length*100);
+    finishTitle.textContent=`完成 ${mode==="word"?"單字":"句子"}測驗`;
+    finishText.textContent=`你答對 ${score} / ${qs.length} 題（${pct}%）。上方題目列表會保留答題結果，你也可以切換另一種測驗。`;
+    renderQuestionList();
+    saveQuizProgress();
+  }
+
+  hintBtn.addEventListener("click",()=>{
+    const states=stateSet();
+    const state=states[qIndex];
+    const q=quizSet()[qIndex];
+    state.hintLevel=Math.min(3,state.hintLevel+1);
+    hintBox.textContent=maskedHint(q.answer,state.hintLevel);
+    hintBox.className="hint-box show";
+    saveQuizProgress();
+  });
+
+  $("clearBtn").addEventListener("click",()=>{
+    const state=stateSet()[qIndex];
+    if(state.status==="correct") return;
+    answerInput.value="";
+    state.typed="";
+    answerInput.classList.remove("wrong");
+    resultBanner.className="result-banner";
+    resultBanner.textContent="";
+    feedbackBox.className="feedback-box";
+    feedbackBox.textContent="";
+    answerInput.focus();
+    saveQuizProgress();
+    showToast("已清除輸入內容");
+  });
+
+  checkBtn.addEventListener("click",checkAnswer);
+  nextBtn.addEventListener("click",nextQuestion);
+
+  answerInput.addEventListener("input",()=>{
+    const state=stateSet()[qIndex];
+    if(state.status!=="correct"){
+      state.typed=answerInput.value;
+      answerInput.classList.remove("wrong");
+      if(state.status==="wrong"){
+        resultBanner.className="result-banner";
+        resultBanner.textContent="";
+        feedbackBox.className="feedback-box";
+        feedbackBox.textContent="";
+      }
+      saveQuizProgress();
+    }
+  });
+
+  answerInput.addEventListener("keydown",(e)=>{
+    if(e.key==="Enter"){
+      e.preventDefault();
+      const state=stateSet()[qIndex];
+      if(state.status==="correct") nextQuestion();
+      else checkAnswer();
+    }
+  });
+
+  $("restartQuizBtn").addEventListener("click",()=>{
+    window.clearTimeout(window.__autoNextQuizTimer);
+    quizStates[mode]=quizSet().map(()=>({typed:"",status:"unanswered",hintLevel:0}));
+    qIndexes[mode]=0;
+    qIndex=0;
+    saveQuizProgress();
+    renderQuestion();
+  });
+
+  document.querySelectorAll(".quiz-tab").forEach(btn=>{
+    btn.addEventListener("click",()=>switchMode(btn.dataset.mode));
+  });
+
+  const studyView=$("studyView"), quizView=$("quizView");
+  document.querySelectorAll(".nav-btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const v=btn.dataset.view;
+      studyView.style.display=v==="study"?"":"none";
+      quizView.classList.toggle("active",v==="quiz");
+      document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b===btn));
+      window.scrollTo({top:0,behavior:"smooth"});
+      if(v==="quiz")renderQuestion();
+    });
+  });
+
+  $("resetBtn").addEventListener("click",()=>{
+    window.clearTimeout(window.__autoNextQuizTimer);
+    list.querySelectorAll(".word-card").forEach(c=>c.classList.remove("done"));
+    updateProgress(false);
+    quizStates.word=WORD_QUIZ.map(()=>({typed:"",status:"unanswered",hintLevel:0}));
+    quizStates.sentence=SENTENCE_QUIZ.map(()=>({typed:"",status:"unanswered",hintLevel:0}));
+    qIndexes.word=0;
+    qIndexes.sentence=0;
+    mode="word";
+    qIndex=0;
+    document.querySelectorAll(".quiz-tab").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));
+    try{
+      localStorage.removeItem(STORAGE_KEYS.study);
+      localStorage.removeItem(STORAGE_KEYS.quiz);
+    }catch(e){}
+    renderQuestion();
+    showToast("本章進度已重置");
+  });
+
+  window.addEventListener("beforeunload",()=>{
+    saveCurrentTyped();
+    saveQuizProgress();
+  });
+
+  applyConfig();
+  makeCards();
+  restoreQuizProgress();
+  document.querySelectorAll(".quiz-tab").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));
+  renderQuestion();
+})();
+</script>
+</body>
+</html>
