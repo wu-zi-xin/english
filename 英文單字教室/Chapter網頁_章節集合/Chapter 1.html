@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英文單字教室_Chapter 1</title>
+    <style>
+        /* 深色主題與顏色設定 */
+        :root {
+            --bg-color: #121212;
+            --text-color: #f5f5f5;
+            --primary-color: #1e1e1e;
+            --secondary-color: #2c3e50;
+            --accent-color: #3498db;
+            --hover-color: #2980b9;
+            --link-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            font-size: 17px; 
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 2.2em;
+            margin-bottom: 30px;
+        }
+
+        /* --------------------------- */
+        /* 第一層：大標題按鈕 (已優化縮小) */
+        /* --------------------------- */
+        .main-accordion {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            cursor: pointer;
+            padding: 16px 20px; /* 縮小留白 */
+            width: 100%;
+            border: 2px solid var(--secondary-color);
+            border-radius: 10px;
+            text-align: left;
+            outline: none;
+            font-size: 1.5em; /* 縮小字體 (原本 2.2em) */
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 12px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .main-accordion:hover, .main-accordion.active {
+            background-color: #252525;
+            border-color: var(--accent-color);
+        }
+
+        /* 展開狀態下取消底部圓角，讓它跟下方區塊連在一起 */
+        .main-accordion.active {
+            margin-bottom: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom: none;
+        }
+
+        .main-accordion::after {
+            content: '\25BC'; /* 向下箭頭 */
+            font-size: 0.7em;
+            color: var(--accent-color);
+            transition: transform 0.3s;
+        }
+
+        .main-accordion.active::after {
+            transform: rotate(-180deg); /* 箭頭反轉 */
+        }
+
+        /* 大組題展開後的內容區塊 */
+        .main-panel {
+            display: none; /* 預設收合 */
+            background-color: var(--primary-color);
+            border: 2px solid var(--accent-color);
+            border-top: none;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            padding: 15px 20px 20px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .main-panel.show {
+            display: block; /* 展開時顯示 */
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --------------------------- */
+        /* 第二層：小標題按鈕 (工作項目) */
+        /* --------------------------- */
+        .accordion {
+            background-color: var(--secondary-color);
+            color: #fff;
+            cursor: pointer;
+            padding: 16px 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            margin-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion:hover, .accordion.active {
+            background-color: var(--hover-color);
+        }
+
+        .accordion::after {
+            content: '\002B'; /* 加號 */
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .accordion.active::after {
+            content: '\2212'; /* 減號 */
+        }
+
+        /* 面板內部連結列表 */
+        .panel {
+            padding: 0 10px;
+            background-color: transparent;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .panel ul {
+            list-style: none;
+            padding: 12px 0;
+            margin: 0;
+        }
+
+        .panel li {
+            margin: 10px 0;
+        }
+
+        .panel a {
+            display: block;
+            padding: 15px 18px;
+            background-color: var(--link-bg);
+            color: #81ecec; 
+            text-decoration: none;
+            font-size: 1.15em;
+            border-radius: 8px;
+            transition: 0.3s;
+            border-left: 6px solid transparent;
+            word-break: break-all;
+        }
+
+        .panel a:hover {
+            background-color: #3a3a3a;
+            border-left: 6px solid var(--accent-color);
+            color: #ffffff;
+            padding-left: 22px;
+        }
+
+        /* 空白預留區提示文字 */
+        .empty-msg {
+            font-size: 1.2em;
+            color: #999;
+            padding: 15px;
+            font-style: italic;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        /* --- 漢堡選單設計（優化大小與螢幕占比） --- */
+        .fab-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 100;
+            background-color: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+        
+        .fab-btn:hover { 
+            background-color: var(--hover-color); 
+            transform: scale(1.08); 
+        }
+
+        .fab-menu {
+            position: fixed;
+            bottom: 88px; /* 在按鈕上方 */
+            right: 25px;
+            z-index: 99;
+            background: rgba(30, 30, 30, 0.96);
+            backdrop-filter: blur(8px);
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            width: 250px; /* 桌面版舒適固定寬度 */
+            padding: 16px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px) scale(0.95);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #333;
+        }
+        
+        .fab-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .fab-menu-header {
+            font-size: 0.75em;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            padding-left: 4px;
+            font-weight: bold;
+        }
+
+        .fab-action {
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            background: #252525;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            color: #f5f5f5;
+            transition: 0.2s;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .fab-action:hover { 
+            background: #333; 
+            border-color: var(--accent-color);
+            transform: translateX(3px);
+        }
+        
+        .fab-search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .fab-search-box input {
+            background-color: #252525;
+            border: 1px solid #444;
+            color: #f5f5f5;
+            padding: 10px 14px;
+            padding-right: 32px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        .fab-search-box input:focus {
+            border-color: var(--accent-color);
+            background-color: #2a2a2a;
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 12px;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 14px;
+            display: none;
+            transition: 0.2s;
+        }
+
+        .search-clear:hover {
+            color: #fff;
+        }
+
+        .fab-action:last-child { margin-bottom: 0; }
+        
+        .text-red { color: #ff6b6b !important; }
+        .text-green { color: #51cf66 !important; }
+
+        /* 手機版自適應與動態寬度比例設定 */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8em; }
+            .main-accordion { font-size: 1.3em; padding: 14px 16px; }
+            .accordion { font-size: 1.15em; padding: 14px 16px; }
+            .panel a { font-size: 1.05em; padding: 14px; }
+            
+            .fab-btn { bottom: 18px; right: 18px; width: 44px; height: 44px; font-size: 18px; }
+            
+            /* 手機版選單智慧撐開螢幕占比，不顯得侷促 */
+            .fab-menu {
+                bottom: 70px;
+                right: 18px;
+                left: 18px; /* 左右自動對齊，隨螢幕寬度自適應 */
+                width: auto;
+                max-width: 320px;
+                margin-left: auto; /* 靠右對齊 */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>英文單字教室_Chapter 1</h1>
+
+    <!-- 【大標題一：Chapter 1】 -->
+    <button class="main-accordion">Chapter 1</button>
+    <div class="main-panel">
+        
+        <!-- Unit 1-->
+        <button class="accordion">Chapter 1</button>
+        <div class="panel">
+            <ul>
+                <li><a href="https://wu-zi-xin.github.io/" target="_blank">Chapter 1_ 010-011</a></li>
+            </ul>
+        </div>
+</div>
+
+
+<!-- 右下角優化後的漢堡選單按鈕與彈出面板 -->
+<div id="fabBtn" class="fab-btn" title="開啟選單">☰</div>
+
+<div id="fabMenu" class="fab-menu">
+    <div class="fab-menu-header">快速搜尋</div>
+    <div class="fab-search-box">
+        <input type="text" id="searchInput" placeholder="輸入關鍵字..." oninput="filterQuestions()">
+        <span class="search-clear" id="searchClear" onclick="clearSearch()">✕</span>
+    </div>
+    <div class="fab-menu-header">頁面控制</div>
+    <div class="fab-action" onclick="scrollToTop()">🚀 回到頂部</div>
+    <div class="fab-action text-green" onclick="forceExpandAll()">📂 全部展開</div>
+    <div class="fab-action text-red" onclick="forceCollapseAll()">📁 全部收合</div>
+</div>
+
+<!-- JavaScript 控制區塊 -->
+<script>
+    // 展開所有大標題與小標題
+    function forceExpandAll() {
+        document.querySelectorAll('.main-accordion').forEach(acc => {
+            acc.classList.add("active");
+            var panel = acc.nextElementSibling;
+            if (panel) panel.classList.add("show");
+        });
+        document.querySelectorAll('.accordion').forEach(acc => {
+            acc.classList.add("active");
+            var panel = acc.nextElementSibling;
+            if (panel) panel.style.maxHeight = panel.scrollHeight + "px";
+        });
+        document.getElementById('fabMenu').classList.remove('show');
+    }
+
+    // 收合所有大標題與小標題
+    function forceCollapseAll() {
+        document.querySelectorAll('.main-accordion.active').forEach(acc => {
+            acc.classList.remove("active");
+            var panel = acc.nextElementSibling;
+            if (panel) panel.classList.remove("show");
+        });
+        document.querySelectorAll('.accordion.active').forEach(acc => {
+            acc.classList.remove("active");
+            var panel = acc.nextElementSibling;
+            if (panel) panel.style.maxHeight = null;
+        });
+    }
+
+    // 回到頂部
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        document.getElementById('fabMenu').classList.remove('show');
+    }
+
+    // 動態多關鍵字模糊即時搜尋
+    function filterQuestions() {
+        const input = document.getElementById('searchInput');
+        const rawValue = input.value.trim();
+        const clearBtn = document.getElementById('searchClear');
+
+        if (rawValue.length === 0) {
+            clearBtn.style.display = 'none';
+            document.querySelectorAll('.main-accordion, .accordion, .main-panel, li').forEach(el => {
+                el.style.display = "";
+            });
+            forceCollapseAll();
+            return;
+        }
+
+        clearBtn.style.display = 'inline';
+
+        const keywords = rawValue.toLowerCase().split(/\s+/).map(k => k.replace(/\s+/g, '')).filter(k => k.length > 0);
+        const mainAccordions = document.querySelectorAll('.main-accordion');
+
+        mainAccordions.forEach(mainAcc => {
+            const mainPanel = mainAcc.nextElementSibling;
+            const accordions = mainPanel.querySelectorAll('.accordion');
+            let mainHasMatch = false;
+
+            accordions.forEach(acc => {
+                const panel = acc.nextElementSibling;
+                const links = panel.querySelectorAll('li');
+                const mainTitle = (mainAcc.textContent || mainAcc.innerText).toLowerCase().replace(/\s+/g, '');
+                const subTitle = (acc.textContent || acc.innerText).toLowerCase().replace(/\s+/g, '');
+                const groupHeader = mainTitle + subTitle;
+
+                let subHasMatch = false;
+
+                links.forEach(li => {
+                    const aTag = li.querySelector('a');
+                    const linkText = (aTag.textContent || aTag.innerText).toLowerCase().replace(/\s+/g, '');
+                    const fullContext = groupHeader + linkText;
+
+                    const matchAllKeywords = keywords.every(kw => fullContext.includes(kw));
+
+                    if (matchAllKeywords) {
+                        li.style.display = "";
+                        subHasMatch = true;
+                        mainHasMatch = true;
+                    } else {
+                        li.style.display = "none";
+                    }
+                });
+
+                if (subHasMatch) {
+                    acc.style.display = "";
+                    acc.classList.add("active");
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                } else {
+                    acc.style.display = "none";
+                    acc.classList.remove("active");
+                    panel.style.maxHeight = null;
+                }
+            });
+
+            if (mainHasMatch) {
+                mainAcc.style.display = "";
+                mainAcc.classList.add("active");
+                mainPanel.classList.add("show");
+            } else {
+                mainAcc.style.display = "none";
+                mainAcc.classList.remove("active");
+                mainPanel.classList.remove("show");
+            }
+        });
+    }
+
+    // 清除搜尋內容並重置畫面
+    function clearSearch() {
+        const input = document.getElementById('searchInput');
+        input.value = "";
+        document.getElementById('searchClear').style.display = 'none';
+
+        document.querySelectorAll('.main-accordion, .accordion, .main-panel, li').forEach(el => {
+            el.style.display = "";
+        });
+
+        forceCollapseAll();
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // 第一層大標題點擊
+        var mainAcc = document.getElementsByClassName("main-accordion");
+        for (var i = 0; i < mainAcc.length; i++) {
+            mainAcc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.classList.contains("show")) {
+                    panel.classList.remove("show");
+                } else {
+                    panel.classList.add("show");
+                }
+            });
+        }
+
+        // 第二層小標題點擊
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+        // 漢堡選單功能
+        const fabBtn = document.getElementById('fabBtn');
+        const fabMenu = document.getElementById('fabMenu');
+
+        // 點擊切換選單
+        fabBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            fabMenu.classList.toggle('show');
+        });
+
+        // 點擊空白處關閉選單
+        document.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (!fabMenu.contains(e.target) && e.target !== fabBtn) {
+                fabMenu.classList.remove('show');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
